@@ -1,20 +1,23 @@
 # Chatter
 
-To start your Phoenix server:
+Let's learn some Elixir/Phoenix together.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+## Requirements
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+* Elixir 1.7.4
+* Erlang 21
+* Nodejs
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+If you use `asdf`, you can just hit `asdf install` after you clone the repo and
+should be good to go.
 
-## Learn more
+## Get started
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Clone this repo, and do the following:
+
+* Install dependencies with `mix deps.get`
+* Create and migrate your database with `mix ecto.setup`
+* Install Node.js dependencies with `cd assets && npm install`
+
+You can start the phoenix server with `mix phx.server`. Now you can visit
+[`localhost:4000`](http://localhost:4000) from your browser.
