@@ -42,7 +42,8 @@ defmodule Chatter.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:wallaby, "~> 0.21.0", [runtime: false, only: :test]}
     ]
   end
 
@@ -56,7 +57,14 @@ defmodule Chatter.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      "watch.assets": &watch_assets/1
     ]
+  end
+
+  defp watch_assets(_) do
+    Mix.shell().cmd(
+      "cd assets/ && node_modules/webpack/bin/webpack.js --watch --mode development"
+    )
   end
 end

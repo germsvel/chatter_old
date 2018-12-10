@@ -1,6 +1,10 @@
 defmodule ChatterWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :chatter
 
+  if Application.get_env(:chatter, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
+
   socket "/socket", ChatterWeb.UserSocket,
     websocket: true,
     longpoll: false
