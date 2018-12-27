@@ -16,7 +16,7 @@ defmodule ChatterWeb.Router do
   scope "/", ChatterWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", ChatRoomController, :index
   end
 
   # Other scopes may use custom stacks.
