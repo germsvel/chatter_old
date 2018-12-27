@@ -3,6 +3,14 @@ defmodule Chatter.ChatTest do
 
   alias Chatter.Chat
 
+  describe "get_room!" do
+    test "gets a room" do
+      room = insert(:room)
+
+      assert room == Chat.get_room!(room.id)
+    end
+  end
+
   describe "create_room" do
     test "creates a new room" do
       room_params = string_params_for(:room)

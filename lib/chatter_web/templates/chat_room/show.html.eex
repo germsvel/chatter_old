@@ -1,0 +1,13 @@
+<h2><%= @room.name %></h2>
+
+<div>
+  <ul class="messages">
+  </ul>
+  <label for="new-message">New Message</label>
+  <input id="new-message"></input>
+  <button id="send-new-message">Send</button>
+</div>
+
+ <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>">
+   window.roomName = "<%= assigns[:room_name] %>";
+ </script>

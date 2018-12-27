@@ -15,10 +15,25 @@ defmodule ChatterWeb.Feature.Helpers do
     css(".room", text: name)
   end
 
+  def message(message) do
+    css(".messages > li", text: message)
+  end
+
   def add_room(session, name: name) do
     session
     |> click(link("Add room"))
     |> fill_in(text_field("Room name"), with: name)
     |> click(button("Create"))
+  end
+
+  def join_room(session, name) do
+    session
+    |> click(link(name))
+  end
+
+  def add_message(session, message) do
+    session
+    |> fill_in(text_field("New Message"), with: message)
+    |> click(button("Send"))
   end
 end

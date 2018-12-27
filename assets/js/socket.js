@@ -8,7 +8,7 @@
 // from the params if you are not using authentication.
 import {Socket} from "phoenix"
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", {params: {}})
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -55,9 +55,27 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let roomName = window.roomName
+let channel = socket.channel(`room:${roomName}`, {})
+
+let messages = document.querySelector(".messages")
+let chatInput = document.querySelector("#new-message")
+let chatSubmit = document.querySelector("#send-new-message")
+
+chatSubmit.addEventListener("click", event => {
+  let message = chatInput.value
+  channel.push("new_message", {body: message})
+  chatInput.value = ""
+})
+
+channel.on("new_message", payload => {
+  let messageItem = document.createElement("li")
+  messageItem.innerText = payload.body
+  messages.appendChild(messageItem)
+})
+
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+  .receive("ok", resp => {})
+  .receive("error", resp => {})
 
 export default socket

@@ -11,6 +11,8 @@ defmodule Chatter.Chat do
     |> Room.changeset(params)
   end
 
+  def get_room!(id), do: Repo.get!(Room, id)
+
   def create_room(params) do
     params
     |> new_changes()

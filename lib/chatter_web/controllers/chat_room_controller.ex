@@ -7,6 +7,12 @@ defmodule ChatterWeb.ChatRoomController do
     render(conn, "index.html", rooms: rooms)
   end
 
+  def show(conn, %{"id" => id}) do
+    room = Chatter.Chat.get_room!(id)
+
+    render(conn, "show.html", room: room)
+  end
+
   def new(conn, _params) do
     changeset = Chatter.Chat.new_changes()
 
