@@ -1,9 +1,9 @@
 <div>
   <%= form_for @changeset, Routes.chat_room_path(@conn, :create), fn f -> %>
     <label>
-    Room name:
-    <%= text_input f, :name %>
-    <%= error_tag f, :name %>
+      Room name:
+      <%= text_input f, :name %>
+      <%= error_tag f, :name %>
     </label>
 
     <%= submit "Create" %>

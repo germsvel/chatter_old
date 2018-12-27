@@ -1,18 +1,19 @@
 defmodule Chatter.Chat do
-  alias Chatter.{Chat, Repo}
+  alias Chatter.Chat.Room
+  alias Chatter.Repo
 
   def all_rooms do
-    Repo.all(Chat.Room)
+    Repo.all(Room)
   end
 
-  def new_changes do
-    %Chat.Room{}
-    |> Chat.Room.changeset(%{})
+  def new_changes(params \\ %{}) do
+    %Room{}
+    |> Room.changeset(params)
   end
 
   def create_room(params) do
-    %Chat.Room{}
-    |> Chat.Room.changeset(params)
+    params
+    |> new_changes()
     |> Repo.insert()
   end
 end

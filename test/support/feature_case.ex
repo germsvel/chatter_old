@@ -9,8 +9,10 @@ defmodule ChatterWeb.FeatureCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      import Chatter.Factory
 
       import ChatterWeb.Router.Helpers
+      import ChatterWeb.Feature.Helpers
     end
   end
 

@@ -22,6 +22,7 @@ defmodule Chatter.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Chatter.DataCase
+      import Chatter.Factory
     end
   end
 
