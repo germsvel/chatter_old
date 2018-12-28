@@ -34,14 +34,12 @@ defmodule ChatterWeb.ChatRoomController do
   end
 
   defp authenticate(conn, _) do
-    username = get_session(conn, :username)
-
-    if is_nil(username) do
+    if Chatter.Session.signed_in?(conn) do
+      conn
+    else
       conn
       |> redirect(to: Routes.session_path(conn, :new))
       |> halt()
-    else
-      conn
     end
   end
 end

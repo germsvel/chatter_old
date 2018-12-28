@@ -7,7 +7,7 @@ defmodule ChatterWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :set_username
+    plug :set_current_user
   end
 
   pipeline :api do
@@ -22,8 +22,8 @@ defmodule ChatterWeb.Router do
     resources "/sessions", SessionController, only: [:new, :create]
   end
 
-  defp set_username(conn, _) do
-    username = get_session(conn, :username)
-    assign(conn, :username, username)
+  defp set_current_user(conn, _) do
+    user = Chatter.Session.current_user(conn)
+    assign(conn, :current_user, user)
   end
 end

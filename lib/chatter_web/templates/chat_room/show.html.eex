@@ -9,7 +9,7 @@
 </div>
 
 <script>
-  window.username = "<%= assigns[:username] %>";
+  window.username = "<%= assigns[:current_user].username %>";
   window.roomName = "<%= assigns[:room_name] %>";
 </script>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

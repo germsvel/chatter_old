@@ -54,6 +54,8 @@ defmodule ChatterWeb.ChatRoomControllerTest do
   end
 
   defp sign_in(conn) do
-    Plug.Test.init_test_session(conn, username: "randomUser")
+    conn
+    |> Plug.Test.init_test_session(foo: "bar")
+    |> Chatter.Session.sign_in(as: "random user")
   end
 end

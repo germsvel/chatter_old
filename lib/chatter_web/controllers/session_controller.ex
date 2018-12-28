@@ -9,7 +9,7 @@ defmodule ChatterWeb.SessionController do
     rooms = Chatter.Chat.all_rooms()
 
     conn
-    |> put_session(:username, username)
+    |> Chatter.Session.sign_in(as: username)
     |> assign(:rooms, rooms)
     |> redirect(to: Routes.chat_room_path(conn, :index))
   end
