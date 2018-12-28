@@ -18,10 +18,6 @@ defmodule ChatterWeb.Router do
 
     get "/", ChatRoomController, :index
     resources "/chat_rooms", ChatRoomController, only: [:new, :create, :show]
+    resources "/sessions", SessionController, only: [:new, :create]
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ChatterWeb do
-  #   pipe_through :api
-  # end
 end

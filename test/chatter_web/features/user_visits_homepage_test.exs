@@ -6,6 +6,7 @@ defmodule ChatterWeb.UserVisitsHomepageTest do
 
     session
     |> visit(home_page())
+    |> sign_in()
     |> assert_has(number_of_rooms(2))
   end
 
@@ -14,6 +15,7 @@ defmodule ChatterWeb.UserVisitsHomepageTest do
 
     session
     |> visit(home_page())
+    |> sign_in()
     |> add_room(name: name)
     |> assert_has(room_name(name))
   end

@@ -8,12 +8,14 @@ defmodule ChatterWeb.UsersCanChatTest do
       metadata
       |> new_user()
       |> visit(home_page())
+      |> sign_in()
       |> join_room(room.name)
 
     user2 =
       metadata
       |> new_user()
       |> visit(home_page())
+      |> sign_in()
       |> join_room(room.name)
 
     user1

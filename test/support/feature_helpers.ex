@@ -36,4 +36,10 @@ defmodule ChatterWeb.Feature.Helpers do
     |> fill_in(text_field("New Message"), with: message)
     |> click(button("Send"))
   end
+
+  def sign_in(session) do
+    session
+    |> fill_in(text_field("Username"), with: "randomuser")
+    |> click(button("Sign in"))
+  end
 end
