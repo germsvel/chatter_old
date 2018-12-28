@@ -7,7 +7,11 @@ defmodule ChatterWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  pipeline :authenticated do
     plug :set_current_user
+    plug ChatterWeb.AuthenticationPlug
   end
 
   pipeline :api do
@@ -15,10 +19,15 @@ defmodule ChatterWeb.Router do
   end
 
   scope "/", ChatterWeb do
-    pipe_through :browser
+    pipe_through [:browser, :authenticated]
 
     get "/", ChatRoomController, :index
     resources "/chat_rooms", ChatRoomController, only: [:new, :create, :show]
+  end
+
+  scope "/", ChatterWeb do
+    pipe_through :browser
+
     resources "/sessions", SessionController, only: [:new, :create]
   end
 

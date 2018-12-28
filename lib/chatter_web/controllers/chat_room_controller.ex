@@ -1,8 +1,6 @@
 defmodule ChatterWeb.ChatRoomController do
   use ChatterWeb, :controller
 
-  plug :authenticate
-
   def index(conn, _params) do
     rooms = Chatter.Chat.all_rooms()
 
@@ -30,16 +28,6 @@ defmodule ChatterWeb.ChatRoomController do
 
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
-    end
-  end
-
-  defp authenticate(conn, _) do
-    if Chatter.Session.signed_in?(conn) do
-      conn
-    else
-      conn
-      |> redirect(to: Routes.session_path(conn, :new))
-      |> halt()
     end
   end
 end
