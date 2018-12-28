@@ -37,9 +37,11 @@ defmodule ChatterWeb.Feature.Helpers do
     |> click(button("Send"))
   end
 
-  def sign_in(session) do
+  def sign_in(session, opts \\ []) do
+    username = Keyword.get(opts, :as, "randomuser")
+
     session
-    |> fill_in(text_field("Username"), with: "randomuser")
+    |> fill_in(text_field("Username"), with: username)
     |> click(button("Sign in"))
   end
 end

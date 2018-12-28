@@ -8,6 +8,8 @@
   <button id="send-new-message">Send</button>
 </div>
 
- <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>">
-   window.roomName = "<%= assigns[:room_name] %>";
- </script>
+<script>
+  window.username = "<%= assigns[:username] %>";
+  window.roomName = "<%= assigns[:room_name] %>";
+</script>
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

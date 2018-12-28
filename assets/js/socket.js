@@ -8,7 +8,7 @@
 // from the params if you are not using authentication.
 import {Socket} from "phoenix"
 
-let socket = new Socket("/socket", {params: {}})
+let socket = new Socket("/socket", {params: {username: window.username}})
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -70,7 +70,7 @@ chatSubmit.addEventListener("click", event => {
 
 channel.on("new_message", payload => {
   let messageItem = document.createElement("li")
-  messageItem.innerText = payload.body
+  messageItem.innerText = `${payload.author}: ${payload.body}`
   messages.appendChild(messageItem)
 })
 

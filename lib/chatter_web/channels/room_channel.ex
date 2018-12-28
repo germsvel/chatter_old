@@ -6,7 +6,13 @@ defmodule ChatterWeb.RoomChannel do
   end
 
   def handle_in("new_message", payload, socket) do
-    broadcast(socket, "new_message", payload)
+    outgoing_payload = add_author(payload, socket)
+
+    broadcast(socket, "new_message", outgoing_payload)
     {:noreply, socket}
+  end
+
+  defp add_author(payload, socket) do
+    Map.put(payload, "author", socket.assigns.username)
   end
 end

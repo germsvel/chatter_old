@@ -7,6 +7,7 @@ defmodule ChatterWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :set_username
   end
 
   pipeline :api do
@@ -19,5 +20,10 @@ defmodule ChatterWeb.Router do
     get "/", ChatRoomController, :index
     resources "/chat_rooms", ChatRoomController, only: [:new, :create, :show]
     resources "/sessions", SessionController, only: [:new, :create]
+  end
+
+  defp set_username(conn, _) do
+    username = get_session(conn, :username)
+    assign(conn, :username, username)
   end
 end

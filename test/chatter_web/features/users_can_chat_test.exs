@@ -8,25 +8,25 @@ defmodule ChatterWeb.UsersCanChatTest do
       metadata
       |> new_user()
       |> visit(home_page())
-      |> sign_in()
+      |> sign_in(as: "german")
       |> join_room(room.name)
 
     user2 =
       metadata
       |> new_user()
       |> visit(home_page())
-      |> sign_in()
+      |> sign_in(as: "josh")
       |> join_room(room.name)
 
     user1
     |> add_message("Hello Josh")
 
     user2
-    |> assert_has(message("Hello Josh"))
+    |> assert_has(message("german: Hello Josh"))
     |> add_message("Hi German")
 
     user1
-    |> assert_has(message("Hi German"))
+    |> assert_has(message("josh: Hi German"))
   end
 
   defp new_user(metadata) do
