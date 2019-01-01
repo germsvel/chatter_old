@@ -62,6 +62,12 @@ let messages = document.querySelector(".messages")
 let chatInput = document.querySelector("#new-message")
 let chatSubmit = document.querySelector("#send-new-message")
 
+let addMessage = (author, message) => {
+  let messageItem = document.createElement("li")
+  messageItem.innerText = `${author}: ${message}`
+  messages.appendChild(messageItem)
+}
+
 chatSubmit.addEventListener("click", event => {
   let message = chatInput.value
   channel.push("new_message", {body: message})
@@ -69,13 +75,18 @@ chatSubmit.addEventListener("click", event => {
 })
 
 channel.on("new_message", payload => {
-  let messageItem = document.createElement("li")
-  messageItem.innerText = `${payload.author}: ${payload.body}`
-  messages.appendChild(messageItem)
+  addMessage(payload.author, payload.body)
 })
 
 channel.join()
-  .receive("ok", resp => {})
+  .receive("ok", resp => {
+    let history = resp.history
+
+    for (let i in history) {
+      let [author, message] = history[i]
+      addMessage(author, message)
+    }
+  })
   .receive("error", resp => {})
 
 export default socket

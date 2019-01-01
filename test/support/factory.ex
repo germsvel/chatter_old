@@ -8,4 +8,9 @@ defmodule Chatter.Factory do
       name: sequence(:room, &"room#{&1}")
     }
   end
+
+  def with_history(%Chat.Room{name: name} = room) do
+    Chatter.History.start_room(name)
+    room
+  end
 end

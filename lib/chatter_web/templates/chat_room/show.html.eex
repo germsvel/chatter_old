@@ -10,6 +10,6 @@
 
 <script>
   window.username = "<%= assigns[:current_user].username %>";
-  window.roomName = "<%= assigns[:room_name] %>";
+  window.roomName = "<%= assigns[:room].name %>";
 </script>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

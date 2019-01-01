@@ -19,5 +19,13 @@ defmodule Chatter.ChatTest do
 
       assert room.name == room_params["name"]
     end
+
+    test "creates a history for the new room" do
+      room_params = string_params_for(:room)
+
+      {:ok, room} = Chat.create_room(room_params)
+
+      assert Chatter.History.exists?(room.name)
+    end
   end
 end

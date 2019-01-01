@@ -6,18 +6,13 @@ defmodule Chatter.Application do
   use Application
 
   def start(_type, _args) do
-    # List all child processes to be supervised
     children = [
-      # Start the Ecto repository
       Chatter.Repo,
-      # Start the endpoint when the application starts
-      ChatterWeb.Endpoint
-      # Starts a worker by calling: Chatter.Worker.start_link(arg)
-      # {Chatter.Worker, arg},
+      ChatterWeb.Endpoint,
+      Chatter.History,
+      {Task, &Chatter.History.start_all/0}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Chatter.Supervisor]
     Supervisor.start_link(children, opts)
   end
